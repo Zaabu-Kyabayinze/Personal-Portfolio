@@ -1,1 +1,175 @@
-/* Add you CSS here */
+/* Basic reset and background */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif; /* Clean, modern font */
+  background-image: url('hero-bg.jpg'); /* Background image for the whole site */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #222;
+}
+
+/* Navigation bar styles */
+.navbar {
+  background-color: #22335b; /* Dark blue */
+  padding: 10px 0;
+}
+
+.navbar ul {
+  list-style-type: none; /* Remove bullet points */
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.navbar li {
+  display: inline;
+  margin: 0 15px;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+/* Hero section styles */
+.hero {
+  background: rgba(34, 34, 59, 0.8); /* Semi-transparent overlay */
+  text-align: center;
+  padding: 60px 20px 40px 20px;
+  border-bottom: 2px solid #eaeaea;
+}
+
+.hero h1 {
+  color: #fff;
+  font-size: 48px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.hero-subtitle {
+  color: #dbeafe;
+  font-size: 20px;
+  margin-top: 0;
+  font-weight: bold;
+}
+
+/* Add this for the circular hero photo */
+.hero-photo {
+  width: 120px;              /* Set the size of the photo */
+  height: 120px;
+  object-fit: cover;         /* Crop the image to fit the circle */
+  border-radius: 50%;        /* Make the image circular */
+  border: 4px solid #fff;    /* Optional: white border for contrast */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Optional: subtle shadow */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Bio/Mission section styles */
+.bio {
+  background-color: #fff;
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 40px auto 40px auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.bio-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.bio-img {
+  width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+.bio-text {
+  max-width: 400px;
+}
+
+.bio-text h2 {
+  color: #22335b;
+  margin-top: 0;
+}
+
+.bio-text p {
+  margin-top: 10px;
+}
+
+/* Skills section styles */
+.skills {
+  background-color: #22335b;
+  color: #fff;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.skills h2 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.skills-list {
+  margin-top: 20px;
+}
+
+.skill-badge {
+  display: inline-block;
+  background: #3b4a6b;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  margin: 6px 6px;
+  font-size: 16px;
+}
+
+/* Footer styles for contact information */
+.footer {
+  background-color: #22335b; /* Same as navbar for consistency */
+  color: #fff;
+  text-align: center;
+  padding: 20px 10px;
+  margin-top: 30px;
+  font-size: 16px;
+}
+
+.footer a {
+  color: #dbeafe; /* Light blue for links */
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 700px) {
+  .bio-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .bio-img {
+    width: 100%;
+    max-width: 300px;
+  }
+  .hero h1 {
+    font-size: 32px;
+  }
+}

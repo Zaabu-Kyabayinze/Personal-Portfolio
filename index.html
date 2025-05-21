@@ -4,8 +4,66 @@
   <meta charset="UTF-8">
   <title>My Personal Site</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Add Font Awesome for skill icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-  <!-- Add your HTML content here -->
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <!-- Navigation links -->
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <!-- Owner's circular photo -->
+    <img src="owner.jpg" alt="Website Owner" class="hero-photo">
+    <!-- Main heading and subheading -->
+    <h1>Zaabu Kyabayinze</h1>
+    <p class="hero-subtitle">Web Developer</p>
+  </section>
+
+  <!-- Bio/Mission Section -->
+  <section class="bio" id="about">
+    <div class="bio-row">
+      <!-- Example image, use your own if you want -->
+      <img src="laptop.jpg" alt="Laptop" class="bio-img">
+      <div class="bio-text">
+        <h2>About Me</h2>
+        <p>
+          Hi there! I'm Zaabu Kyabayinze, a Computer Science student at Rowan University with a passion for technology and innovation. I love coding and am always eager to learn new things. My goal is to become a proficient software developer and contribute to exciting projects.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="skills" id="skills">
+    <h2>Skills</h2>
+    <p>Here are a few of the skills I bring to the table:</p>
+    <div class="skills-list">
+      <!-- Each skill now has an icon using Font Awesome -->
+      <span class="skill-badge"><i class="fab fa-html5"></i> HTML</span>
+      <span class="skill-badge"><i class="fab fa-css3-alt"></i> CSS</span>
+      <span class="skill-badge"><i class="fab fa-js"></i> JavaScript</span>
+      <span class="skill-badge"><i class="fas fa-users"></i> Teamwork</span>
+      <span class="skill-badge"><i class="fas fa-tasks"></i> Project Management</span>
+    </div>
+  </section>
+
+  <!-- Footer section with contact information -->
+  <footer class="footer" id="contact">
+    <!-- Contact details for the website owner -->
+    <p>Contact Me:</p>
+    <p>Email: <a href="mailto:zaabu@email.com">zaabudarin@gmail.com</a></p>
+    <p>Phone: <a href="tel:+1234567890">+1 (908) 294-4573</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/zaabu" target="_blank">www.linkedin.com/in/zaabu-kyabayinze</a></p>
+  </footer>
 </body>
 </html>
