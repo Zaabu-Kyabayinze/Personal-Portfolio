@@ -4,35 +4,125 @@
   <meta charset="UTF-8">
   <title>My Personal Site</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Add Font Awesome for skill icons -->
+  <!-- Add Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Add Google Fonts for a professional look -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:600&display=swap" rel="stylesheet">
+  <style>
+    /* Animated gradient overlay for a tech-inspired background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: linear-gradient(120deg, #00e0ff44 0%, #22335b44 100%);
+      opacity: 0.7;
+      animation: bgMove 12s linear infinite alternate;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    /* Make sure all content is above the animated background */
+    body > *:not(.cursor-dot) {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Fade and slide-in animation for sections on scroll */
+    section, .project {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s, transform 0.8s;
+    }
+
+    /* Show sections when they are in view (JS will add .in-view) */
+    section.in-view, .project.in-view {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Mouse-following dot (already in your code) */
+    .cursor-dot {
+      width: 16px;
+      height: 16px;
+      background: #00e0ff;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 0 12px #00e0ff88;
+    }
+
+    /* Projects section styles */
+    .projects-horizontal {
+      padding: 60px 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      margin: 40px 0;
+    }
+
+    .projects-scroll {
+      display: flex;
+      overflow-x: auto;
+      padding: 20px 0;
+      scroll-snap-type: x mandatory;
+    }
+
+    .project-card {
+      min-width: 300px;
+      margin-right: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      padding: 20px;
+      scroll-snap-align: start;
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* ...existing styles for .navbar, .hero, .skills, etc... */
+  </style>
 </head>
 <body>
+  <!-- Dot that follows the cursor -->
+  <div class="cursor-dot"></div>
+
+  <!-- Mouse scroll animation -->
+  <div class="scroll-animation">
+    <span class="scroll-dot"></span>
+    <span class="scroll-arrow"></span>
+  </div>
+
   <!-- Navigation Bar -->
   <nav class="navbar">
-    <!-- Navigation links -->
     <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#home"><i class="fas fa-house"></i> Home</a></li>
+      <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+      <li><a href="#skills"><i class="fas fa-lightbulb"></i> Skills</a></li>
+      <li><a href="#projects"><i class="fas fa-briefcase"></i> Projects</a></li>
+      <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
     </ul>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero" id="home">
-    <!-- Owner's circular photo -->
     <img src="owner.jpg" alt="Website Owner" class="hero-photo">
-    <!-- Main heading and subheading -->
     <h1>Zaabu Kyabayinze</h1>
-    <p class="hero-subtitle">Web Developer</p>
+    <p class="hero-subtitle">Software Engineer</p>
   </section>
 
   <!-- Bio/Mission Section -->
   <section class="bio" id="about">
     <div class="bio-row">
-      <!-- Example image, use your own if you want -->
       <img src="laptop.jpg" alt="Laptop" class="bio-img">
       <div class="bio-text">
         <h2>About Me</h2>
@@ -46,24 +136,100 @@
   <!-- Skills Section -->
   <section class="skills" id="skills">
     <h2>Skills</h2>
-    <p>Here are a few of the skills I bring to the table:</p>
-    <div class="skills-list">
-      <!-- Each skill now has an icon using Font Awesome -->
-      <span class="skill-badge"><i class="fab fa-html5"></i> HTML</span>
-      <span class="skill-badge"><i class="fab fa-css3-alt"></i> CSS</span>
-      <span class="skill-badge"><i class="fab fa-js"></i> JavaScript</span>
-      <span class="skill-badge"><i class="fas fa-users"></i> Teamwork</span>
-      <span class="skill-badge"><i class="fas fa-tasks"></i> Project Management</span>
+    <p>Here are some of the skills I bring to the table:</p>
+
+    
+    <!-- Development Tools & IDEs -->
+    <div class="skills-group">
+      <!-- Centered heading for Development Tools & IDEs -->
+      <h3 class="skills-group-title" style="text-align: center; justify-content: center;">
+        <i class="fas fa-tools"></i> Development Tools & IDEs
+      </h3>
+      <div class="skills-list">
+        <span class="skill-badge"><i class="fas fa-laptop-code"></i> IntelliJ</span>
+        <span class="skill-badge"><i class="fas fa-laptop-code"></i> BlueJ</span>
+        <span class="skill-badge"><i class="fas fa-database"></i> Microsoft Access</span>
+        <span class="skill-badge"><i class="fas fa-file-excel"></i> Microsoft Excel</span>
+        <span class="skill-badge"><i class="fab fa-github"></i> GitHub</span>
+      </div>
+    </div>
+
+    <!-- Languages -->
+    <div class="skills-group">
+      <!-- Centered heading for Languages -->
+      <h3 class="skills-group-title" style="text-align: center; justify-content: center;">
+        <i class="fas fa-code"></i> Languages
+      </h3>
+      <div class="skills-list">
+        <span class="skill-badge"><i class="fab fa-html5"></i> HTML</span>
+        <span class="skill-badge"><i class="fab fa-css3-alt"></i> CSS</span>
+        <span class="skill-badge"><i class="fab fa-js"></i> JavaScript</span>
+        <span class="skill-badge"><i class="fab fa-python"></i> Python</span>
+      </div>
+    </div>
+
+    <!-- Soft Skills -->
+    <div class="skills-group">
+      <!-- Centered heading for Soft Skills -->
+      <h3 class="skills-group-title" style="text-align: center; justify-content: center;">
+        <i class="fas fa-user-friends"></i> Soft Skills
+      </h3>
+      <div class="skills-list">
+        <span class="skill-badge"><i class="fas fa-tasks"></i> Project Management</span>
+        <span class="skill-badge"><i class="fas fa-users"></i> Teamwork</span>
+        <span class="skill-badge"><i class="fas fa-user-tie"></i> Leadership</span>
+        <span class="skill-badge"><i class="fas fa-lightbulb"></i> Problem Solving</span>
+        <span class="skill-badge"><i class="fas fa-brain"></i> Critical Thinking</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section with horizontal scroll -->
+  <section class="projects-horizontal" id="projects">
+    <!-- Tech-themed, visible heading and subheading -->
+    <h2 class="projects-heading">My Projects</h2>
+    <p class="projects-subheading">Swipe or scroll sideways to see more projects!</p>
+    <div class="projects-scroll">
+      <div class="project-card">
+        <i class="fas fa-laptop-code"></i>
+        <h3>Portfolio Website</h3>
+        <p>This is my personal portfolio website. It showcases my skills, bio, and contact information using simple HTML and CSS.</p>
+      </div>
+      <div class="project-card">
+        <i class="fas fa-code"></i>
+        <h3>Simple Calculator</h3>
+        <p>A basic calculator built with HTML, CSS, and JavaScript. It can add, subtract, multiply, and divide numbers.</p>
+      </div>
+      <div class="project-card">
+        <i class="fas fa-gamepad"></i>
+        <h3>Mini Game</h3>
+        <p>A fun mini-game project to practice JavaScript and user interaction.</p>
+      </div>
+      <div class="project-card">
+        <i class="fas fa-database"></i>
+        <h3>Data Visualizer</h3>
+        <p>A simple web app to visualize data using charts and graphs.</p>
+      </div>
+      <!-- Add more project cards as you learn! -->
     </div>
   </section>
 
   <!-- Footer section with contact information -->
   <footer class="footer" id="contact">
-    <!-- Contact details for the website owner -->
     <p>Contact Me:</p>
     <p>Email: <a href="mailto:zaabu@email.com">zaabudarin@gmail.com</a></p>
     <p>Phone: <a href="tel:+1234567890">+1 (908) 294-4573</a></p>
     <p>LinkedIn: <a href="https://www.linkedin.com/in/zaabu" target="_blank">www.linkedin.com/in/zaabu-kyabayinze</a></p>
   </footer>
+
+  <!-- Simple JS for cursor dot -->
+  <script>
+    // Dot follows the cursor
+    const dot = document.querySelector('.cursor-dot');
+    document.addEventListener('mousemove', function(e) {
+      dot.style.left = e.clientX + 'px';
+      dot.style.top = e.clientY + 'px';
+    });
+  </script>
 </body>
 </html>

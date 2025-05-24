@@ -32,11 +32,31 @@ body {
   color: #fff;
   text-decoration: none;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
+  font-family: 'Montserrat', Arial, sans-serif;
+  letter-spacing: 1px;
+  padding: 8px 18px;
+  border-radius: 6px;
+  transition: 
+    background 0.3s,
+    color 0.3s,
+    box-shadow 0.3s,
+    transform 0.2s;
+  display: inline-block;
+  position: relative;
+}
+
+/* Add creative icons and animation on hover */
+.navbar a i {
+  margin-right: 7px;
+  transition: color 0.3s, transform 0.3s;
 }
 
 .navbar a:hover {
-  text-decoration: underline;
+  background: linear-gradient(90deg, #00e0ff 0%, #22335b 100%);
+  color: #fff;
+  box-shadow: 0 2px 12px #00e0ff44;
+  transform: translateY(-2px) scale(1.08);
 }
 
 /* Hero section styles */
@@ -61,19 +81,36 @@ body {
   font-weight: bold;
 }
 
-/* Add this for the circular hero photo */
+/* Animated gradient border for hero photo */
 .hero-photo {
-  width: 120px;              /* Set the size of the photo */
-  height: 120px;
-  object-fit: cover;         /* Crop the image to fit the circle */
-  border-radius: 50%;        /* Make the image circular */
-  border: 4px solid #fff;    /* Optional: white border for contrast */
+  width: 150px;      /* Increased from 120px to 150px */
+  height: 150px;     /* Increased from 120px to 150px */
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  background: linear-gradient(135deg, #22335b 60%, #00e0ff 100%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
   margin-top: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Optional: subtle shadow */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   display: block;
   margin-left: auto;
   margin-right: auto;
+  /* Animation for border */
+  animation: border-rotate 3s linear infinite;
+}
+
+@keyframes border-rotate {
+  0% {
+    box-shadow: 0 0 0 0 #00e0ff, 0 2px 8px rgba(0,0,0,0.15);
+  }
+  50% {
+    box-shadow: 0 0 20px 4px #00e0ff, 0 2px 8px rgba(0,0,0,0.15);
+  }
+  100% {
+    box-shadow: 0 0 0 0 #00e0ff, 0 2px 8px rgba(0,0,0,0.15);
+  }
 }
 
 /* Bio/Mission section styles */
@@ -130,6 +167,31 @@ body {
   margin-top: 20px;
 }
 
+/* Add to your style.css for grouping and titles */
+.skills-group {
+  margin-bottom: 28px;
+}
+
+.skills-group-title {
+  color: #00e0ff;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  text-align: center;           /* Center align the heading */
+  display: flex;
+  align-items: center;
+  justify-content: center;      /* Center icons and text horizontally */
+  gap: 8px;
+}
+
+@media (max-width: 700px) {
+  .skills-group-title {
+    font-size: 1em;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/* Hover effect for skill badges */
 .skill-badge {
   display: inline-block;
   background: #3b4a6b;
@@ -138,6 +200,12 @@ body {
   border-radius: 8px;
   margin: 6px 6px;
   font-size: 16px;
+  transition: background 0.3s, transform 0.3s;
+}
+.skill-badge:hover {
+  background: linear-gradient(90deg, #00e0ff 0%, #22335b 100%);
+  color: #fff;
+  transform: scale(1.08);
 }
 
 /* Footer styles for contact information */
@@ -159,6 +227,64 @@ body {
   text-decoration: underline;
 }
 
+/* Simple project card styles for beginners */
+.project {
+  background: #232b3b;           /* Darker background */
+  color: #fff;                   /* White text for contrast */
+  border-radius: 8px;
+  padding: 18px;
+  margin: 18px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  transition: box-shadow 0.3s, transform 0.3s, background 0.3s;
+}
+.project:hover {
+  background: #2d3950;           /* Slightly lighter on hover */
+  box-shadow: 0 4px 24px rgba(0,224,255,0.15), 0 2px 8px rgba(0,0,0,0.18);
+  transform: translateY(-6px) scale(1.02);
+}
+
+.project h3 {
+  color: #00e0ff;                /* Accent color for project titles */
+  margin-top: 0;
+}
+
+/* Tech-themed heading and subheading for projects section */
+.projects-heading {
+  text-align: center;
+  color: #00e0ff; /* Bright tech blue */
+  font-size: 2.2em;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 16px #00e0ff88;
+}
+
+.projects-subheading {
+  text-align: center;
+  color: #dbeafe; /* Soft blue for contrast */
+  font-size: 1.1em;
+  margin-bottom: 18px;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 8px #22335b88;
+}
+
+/* Fade-in animation for sections */
+section, .project {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s ease forwards;
+}
+section:nth-of-type(2) { animation-delay: 0.2s; }
+section:nth-of-type(3) { animation-delay: 0.4s; }
+section:nth-of-type(4) { animation-delay: 0.6s; }
+.project { animation-delay: 0.8s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Responsive adjustments for smaller screens */
 @media (max-width: 700px) {
   .bio-row {
@@ -172,4 +298,334 @@ body {
   .hero h1 {
     font-size: 32px;
   }
+  .skills-list {
+    font-size: 14px;
+  }
+  .project {
+    padding: 12px;
+  }
+}
+
+/* Horizontal scrolling projects section */
+.projects-horizontal {
+  background: rgba(34, 34, 59, 0.92);
+  padding: 40px 0 50px 0;
+  margin: 40px 0;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px #00e0ff22;
+  overflow-x: hidden;
+}
+
+.projects-scroll {
+  display: flex; /* Lay out project cards in a row */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  gap: 24px;
+  padding: 24px 24px 16px 24px;
+  scroll-behavior: smooth;
+  scrollbar-color: #00e0ff #22335b;
+  scrollbar-width: thin;
+}
+
+.project-card {
+  min-width: 260px;
+  max-width: 280px;
+  background: linear-gradient(135deg, #232b3b 80%, #00e0ff22 100%);
+  color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px #00e0ff33;
+  padding: 24px 18px;
+  flex: 0 0 auto;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  border: 2px solid transparent;
+}
+
+.project-card i {
+  font-size: 2.2em;
+  color: #00e0ff;
+  margin-bottom: 12px;
+  display: block;
+  animation: tech-glow 2s infinite alternate;
+}
+
+@keyframes tech-glow {
+  0% { text-shadow: 0 0 8px #00e0ff55; }
+  100% { text-shadow: 0 0 24px #00e0ffcc; }
+}
+
+.project-card:hover {
+  transform: translateY(-8px) scale(1.04) rotate(-2deg);
+  box-shadow: 0 6px 32px #00e0ff55;
+  border: 2px solid #00e0ff;
+  background: linear-gradient(135deg, #22335b 70%, #00e0ff44 100%);
+}
+
+.project-card h3 {
+  margin: 12px 0 8px 0;
+  color: #00e0ff;
+  font-size: 1.2em;
+}
+
+.project-card p {
+  font-size: 1em;
+  color: #dbeafe;
+}
+
+/* Custom scrollbar for horizontal scroll */
+.projects-scroll::-webkit-scrollbar {
+  height: 10px;
+}
+.projects-scroll::-webkit-scrollbar-thumb {
+  background: #00e0ff;
+  border-radius: 6px;
+}
+.projects-scroll::-webkit-scrollbar-track {
+  background: #22335b;
+  border-radius: 6px;
+}
+
+/* Responsive: stack cards vertically on small screens */
+@media (max-width: 700px) {
+  .projects-scroll {
+    flex-direction: column;
+    gap: 18px;
+    overflow-x: hidden;
+    overflow-y: visible;
+    padding: 0 8px 0 8px;
+  }
+  .project-card {
+    min-width: 0;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
+
+/* Responsive, creative scroll animation */
+.scroll-animation {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.scroll-dot {
+  width: 12px;
+  height: 12px;
+  background: #00e0ff;
+  border-radius: 50%;
+  margin-bottom: 6px;
+  animation: scrollDotBounce 1.2s infinite;
+}
+
+.scroll-arrow {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-left: 3px solid #00e0ff;
+  border-bottom: 3px solid #00e0ff;
+  transform: rotate(-45deg);
+  animation: scrollArrowMove 1.2s infinite;
+}
+
+@keyframes scrollDotBounce {
+  0%, 100% { transform: translateY(0);}
+  50% { transform: translateY(10px);}
+}
+
+@keyframes scrollArrowMove {
+  0%, 100% { transform: translateY(0);}
+  50% { transform: translateY(8px);}
+}
+
+/* Responsive: hide scroll animation on very small screens */
+@media (max-width: 500px) {
+  .scroll-animation {
+    display: none;
+  }
+}
+
+/* Cursor dot effect */
+.cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: #00e0ff;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s;
+  z-index: 9999;
+}
+
+/* Cursor dot enlargement on click */
+body:active .cursor-dot {
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* Projects Section with horizontal scroll */
+section.projects-horizontal {
+  background: rgba(34, 34, 59, 0.92);
+  padding: 40px 0 50px 0;
+  margin: 40px 0;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px #00e0ff22;
+  overflow-x: hidden;
+}
+
+.projects-scroll {
+  display: flex; /* Lay out project cards in a row */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  gap: 24px;
+  padding: 24px 24px 16px 24px;
+  scroll-behavior: smooth;
+  scrollbar-color: #00e0ff #22335b;
+  scrollbar-width: thin;
+}
+
+.project-card {
+  min-width: 260px;
+  max-width: 280px;
+  background: linear-gradient(135deg, #232b3b 80%, #00e0ff22 100%);
+  color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px #00e0ff33;
+  padding: 24px 18px;
+  flex: 0 0 auto;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  border: 2px solid transparent;
+}
+
+.project-card i {
+  font-size: 2.2em;
+  color: #00e0ff;
+  margin-bottom: 12px;
+  display: block;
+  animation: tech-glow 2s infinite alternate;
+}
+
+@keyframes tech-glow {
+  0% { text-shadow: 0 0 8px #00e0ff55; }
+  100% { text-shadow: 0 0 24px #00e0ffcc; }
+}
+
+.project-card:hover {
+  transform: translateY(-8px) scale(1.04) rotate(-2deg);
+  box-shadow: 0 6px 32px #00e0ff55;
+  border: 2px solid #00e0ff;
+  background: linear-gradient(135deg, #22335b 70%, #00e0ff44 100%);
+}
+
+.project-card h3 {
+  margin: 12px 0 8px 0;
+  color: #00e0ff;
+  font-size: 1.2em;
+}
+
+.project-card p {
+  font-size: 1em;
+  color: #dbeafe;
+}
+
+/* Custom scrollbar for horizontal scroll */
+.projects-scroll::-webkit-scrollbar {
+  height: 10px;
+}
+.projects-scroll::-webkit-scrollbar-thumb {
+  background: #00e0ff;
+  border-radius: 6px;
+}
+.projects-scroll::-webkit-scrollbar-track {
+  background: #22335b;
+  border-radius: 6px;
+}
+
+/* Responsive: stack cards vertically on small screens */
+@media (max-width: 700px) {
+  .projects-scroll {
+    flex-direction: column;
+    gap: 18px;
+    overflow-x: hidden;
+    overflow-y: visible;
+    padding: 0 8px 0 8px;
+  }
+  .project-card {
+    min-width: 0;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
+
+/* Responsive, creative scroll animation */
+.scroll-animation {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.scroll-dot {
+  width: 12px;
+  height: 12px;
+  background: #00e0ff;
+  border-radius: 50%;
+  margin-bottom: 6px;
+  animation: scrollDotBounce 1.2s infinite;
+}
+
+.scroll-arrow {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-left: 3px solid #00e0ff;
+  border-bottom: 3px solid #00e0ff;
+  transform: rotate(-45deg);
+  animation: scrollArrowMove 1.2s infinite;
+}
+
+@keyframes scrollDotBounce {
+  0%, 100% { transform: translateY(0);}
+  50% { transform: translateY(10px);}
+}
+
+@keyframes scrollArrowMove {
+  0%, 100% { transform: translateY(0);}
+  50% { transform: translateY(8px);}
+}
+
+/* Responsive: hide scroll animation on very small screens */
+@media (max-width: 500px) {
+  .scroll-animation {
+    display: none;
+  }
+}
+
+/* Cursor dot effect */
+.cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: #00e0ff;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s;
+  z-index: 9999;
+}
+
+/* Cursor dot enlargement on click */
+body:active .cursor-dot {
+  transform: translate(-50%, -50%) scale(1.5);
 }
