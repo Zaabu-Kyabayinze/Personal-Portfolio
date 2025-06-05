@@ -14,17 +14,18 @@ body {
 .navbar {
   background-color: #22335b; /* Dark blue */
   padding: 10px 0;
+  text-align: center; /* Center the navbar content */
 }
 
 .navbar ul {
   list-style-type: none; /* Remove bullet points */
   margin: 0;
   padding: 0;
-  text-align: center;
+  text-align: center; /* Center the list items */
 }
 
 .navbar li {
-  display: inline;
+  display: inline-block; /* Use inline-block for better centering */
   margin: 0 15px;
 }
 
