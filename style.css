@@ -17,6 +17,7 @@ body {
   text-align: center; /* Center the navbar content */
 }
 
+/* Center the navigation links */
 .navbar ul {
   list-style-type: none; /* Remove bullet points */
   margin: 0;
@@ -24,6 +25,7 @@ body {
   text-align: center; /* Center the list items */
 }
 
+/* Display nav items inline for horizontal centering */
 .navbar li {
   display: inline-block; /* Use inline-block for better centering */
   margin: 0 15px;
@@ -84,8 +86,8 @@ body {
 
 /* Animated gradient border for hero photo */
 .hero-photo {
-  width: 150px;      /* Increased from 120px to 150px */
-  height: 150px;     /* Increased from 120px to 150px */
+  width: 180px;      /* Increased from 150px to 180px */
+  height: 180px;     /* Increased from 150px to 180px */
   object-fit: cover;
   border-radius: 50%;
   border: 4px solid transparent;
@@ -112,6 +114,18 @@ body {
   100% {
     box-shadow: 0 0 0 0 #00e0ff, 0 2px 8px rgba(0,0,0,0.15);
   }
+}
+
+/* Make the social icons in the hero section a bit larger for visibility */
+.hero a i {
+  font-size: 2rem; /* Increase icon size */
+  margin: 0 8px;
+  vertical-align: middle;
+  transition: color 0.2s;
+}
+
+.hero a:hover i {
+  color: #00e0ff;
 }
 
 /* Bio/Mission section styles */
@@ -249,6 +263,13 @@ body {
   margin-top: 0;
 }
 
+/* Make the background of the project card text area match the project section background */
+.card-body {
+  background: #22335b !important; /* Same as .projects-horizontal background */
+  color: #fff;
+  border-radius: 0 0 16px 16px;
+}
+
 /* Tech-themed heading and subheading for projects section */
 .projects-heading {
   text-align: center;
@@ -309,81 +330,67 @@ section:nth-of-type(4) { animation-delay: 0.6s; }
 
 /* Horizontal scrolling projects section */
 .projects-horizontal {
-  background: rgba(34, 34, 59, 0.92);
+  background: #22335b; /* Same as About Me section */
   padding: 40px 0 50px 0;
   margin: 40px 0;
   border-radius: 12px;
   box-shadow: 0 2px 16px #00e0ff22;
   overflow-x: hidden;
-}
-
-.projects-scroll {
-  display: flex; /* Lay out project cards in a row */
-  overflow-x: auto; /* Enable horizontal scrolling */
-  gap: 24px;
-  padding: 24px 24px 16px 24px;
-  scroll-behavior: smooth;
-  scrollbar-color: #00e0ff #22335b;
-  scrollbar-width: thin;
-}
-
-.project-card {
-  min-width: 260px;
-  max-width: 280px;
-  background: linear-gradient(135deg, #232b3b 80%, #00e0ff22 100%);
+  position: relative; /* Needed for absolute positioning of animation */
   color: #fff;
-  border-radius: 14px;
-  box-shadow: 0 2px 12px #00e0ff33;
-  padding: 24px 18px;
-  flex: 0 0 auto;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-  position: relative;
-  border: 2px solid transparent;
 }
 
-.project-card i {
-  font-size: 2.2em;
-  color: #00e0ff;
-  margin-bottom: 12px;
-  display: block;
-  animation: tech-glow 2s infinite alternate;
+/* Tech background animation for projects section */
+.projects-bg-anim {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
 }
 
-@keyframes tech-glow {
-  0% { text-shadow: 0 0 8px #00e0ff55; }
-  100% { text-shadow: 0 0 24px #00e0ffcc; }
+/* Moving glowing dots for projects section */
+.projects-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: #00e0ff88;
+  opacity: 0.5;
+  animation: projects-dot-move 10s linear infinite alternate;
 }
 
-.project-card:hover {
-  transform: translateY(-8px) scale(1.04) rotate(-2deg);
-  box-shadow: 0 6px 32px #00e0ff55;
-  border: 2px solid #00e0ff;
-  background: linear-gradient(135deg, #22335b 70%, #00e0ff44 100%);
+.projects-dot.pdot1 { width: 24px; height: 24px; top: 15%; left: 12%; animation-delay: 0s;}
+.projects-dot.pdot2 { width: 16px; height: 16px; top: 70%; left: 80%; animation-delay: 2s;}
+.projects-dot.pdot3 { width: 20px; height: 20px; top: 60%; left: 30%; animation-delay: 4s;}
+.projects-dot.pdot4 { width: 12px; height: 12px; top: 35%; left: 60%; animation-delay: 1s;}
+.projects-dot.pdot5 { width: 18px; height: 18px; top: 25%; left: 75%; animation-delay: 3s;}
+
+@keyframes projects-dot-move {
+  0%   { transform: translateY(0) scale(1);}
+  50%  { transform: translateY(30px) scale(1.15);}
+  100% { transform: translateY(-20px) scale(0.95);}
 }
 
-.project-card h3 {
-  margin: 12px 0 8px 0;
-  color: #00e0ff;
-  font-size: 1.2em;
+/* Moving glowing lines for projects section */
+.projects-line {
+  position: absolute;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(180deg, #00e0ff88 0%, #00e0ff00 100%);
+  opacity: 0.7;
+  border-radius: 2px;
+  animation: projects-line-move 8s linear infinite;
 }
 
-.project-card p {
-  font-size: 1em;
-  color: #dbeafe;
-}
+.projects-line.pline1 { left: 8vw; top: 0; animation-delay: 0s;}
+.projects-line.pline2 { left: 28vw; top: 25vh; animation-delay: 2s;}
+.projects-line.pline3 { left: 65vw; top: 15vh; animation-delay: 4s;}
+.projects-line.pline4 { left: 85vw; top: 35vh; animation-delay: 1s;}
+.projects-line.pline5 { left: 55vw; top: 65vh; animation-delay: 3s;}
 
-/* Custom scrollbar for horizontal scroll */
-.projects-scroll::-webkit-scrollbar {
-  height: 10px;
-}
-.projects-scroll::-webkit-scrollbar-thumb {
-  background: #00e0ff;
-  border-radius: 6px;
-}
-.projects-scroll::-webkit-scrollbar-track {
-  background: #22335b;
-  border-radius: 6px;
+@keyframes projects-line-move {
+  0%   { top: 0; opacity: 0.7;}
+  40%  { opacity: 1;}
+  80%  { opacity: 0.7;}
+  100% { top: 80vh; opacity: 0;}
 }
 
 /* Responsive: stack cards vertically on small screens */
@@ -469,164 +476,125 @@ body:active .cursor-dot {
   transform: translate(-50%, -50%) scale(1.5);
 }
 
-/* Projects Section with horizontal scroll */
-section.projects-horizontal {
-  background: rgba(34, 34, 59, 0.92);
-  padding: 40px 0 50px 0;
-  margin: 40px 0;
-  border-radius: 12px;
-  box-shadow: 0 2px 16px #00e0ff22;
-  overflow-x: hidden;
+/* --- BEGINNER-FRIENDLY: Animated tech-like background with moving lines and dots --- */
+
+/* Animated gradient overlay for a techy effect */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -2;
+  background: linear-gradient(120deg, #101827 0%, #22335b 100%);
+  opacity: 0.95;
+  pointer-events: none;
 }
 
-.projects-scroll {
-  display: flex; /* Lay out project cards in a row */
-  overflow-x: auto; /* Enable horizontal scrolling */
-  gap: 24px;
-  padding: 24px 24px 16px 24px;
-  scroll-behavior: smooth;
-  scrollbar-color: #00e0ff #22335b;
-  scrollbar-width: thin;
+/* Container for tech background elements */
+.tech-bg-anim {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: -1;
 }
 
-.project-card {
-  min-width: 260px;
-  max-width: 280px;
-  background: linear-gradient(135deg, #232b3b 80%, #00e0ff22 100%);
-  color: #fff;
-  border-radius: 14px;
-  box-shadow: 0 2px 12px #00e0ff33;
-  padding: 24px 18px;
-  flex: 0 0 auto;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
+/* Moving glowing dots */
+.tech-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: #00e0ff88;
+  opacity: 0.5;
+  animation: tech-dot-move 10s linear infinite alternate;
+}
+
+.tech-dot.dot1 { width: 28px; height: 28px; top: 12%; left: 18%; animation-delay: 0s;}
+.tech-dot.dot2 { width: 16px; height: 16px; top: 65%; left: 82%; animation-delay: 2s;}
+.tech-dot.dot3 { width: 22px; height: 22px; top: 78%; left: 28%; animation-delay: 4s;}
+.tech-dot.dot4 { width: 14px; height: 14px; top: 38%; left: 62%; animation-delay: 1s;}
+.tech-dot.dot5 { width: 20px; height: 20px; top: 22%; left: 72%; animation-delay: 3s;}
+
+@keyframes tech-dot-move {
+  0%   { transform: translateY(0) scale(1);}
+  50%  { transform: translateY(40px) scale(1.2);}
+  100% { transform: translateY(-30px) scale(0.9);}
+}
+
+/* Moving glowing lines */
+.tech-line {
+  position: absolute;
+  width: 2px;
+  height: 120px;
+  background: linear-gradient(180deg, #00e0ff88 0%, #00e0ff00 100%);
+  opacity: 0.7;
+  border-radius: 2px;
+  animation: tech-line-move 8s linear infinite;
+}
+
+.tech-line.line1 { left: 10vw; top: 0; animation-delay: 0s;}
+.tech-line.line2 { left: 30vw; top: 20vh; animation-delay: 2s;}
+.tech-line.line3 { left: 60vw; top: 10vh; animation-delay: 4s;}
+.tech-line.line4 { left: 80vw; top: 30vh; animation-delay: 1s;}
+.tech-line.line5 { left: 50vw; top: 60vh; animation-delay: 3s;}
+
+@keyframes tech-line-move {
+  0%   { top: 0; opacity: 0.7;}
+  40%  { opacity: 1;}
+  80%  { opacity: 0.7;}
+  100% { top: 90vh; opacity: 0;}
+}
+
+/* --- END TECH BACKGROUND --- */
+
+/* Tech-like animation for the skills section */
+.skills-bg-anim {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0; top: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.skills-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: #00e0ff88;
+  opacity: 0.5;
+  animation: skills-dot-move 8s linear infinite alternate;
+}
+
+.skills-dot.sdot1 { width: 18px; height: 18px; top: 18%; left: 10%; animation-delay: 0s;}
+.skills-dot.sdot2 { width: 12px; height: 12px; top: 70%; left: 85%; animation-delay: 1.5s;}
+.skills-dot.sdot3 { width: 15px; height: 15px; top: 60%; left: 25%; animation-delay: 3s;}
+
+@keyframes skills-dot-move {
+  0%   { transform: translateY(0) scale(1);}
+  50%  { transform: translateY(25px) scale(1.2);}
+  100% { transform: translateY(-20px) scale(0.9);}
+}
+
+.skills-line {
+  position: absolute;
+  width: 2px;
+  height: 70px;
+  background: linear-gradient(180deg, #00e0ff88 0%, #00e0ff00 100%);
+  opacity: 0.7;
+  border-radius: 2px;
+  animation: skills-line-move 7s linear infinite;
+}
+
+.skills-line.sline1 { left: 20vw; top: 10%; animation-delay: 0s;}
+.skills-line.sline2 { left: 80vw; top: 60%; animation-delay: 2s;}
+
+@keyframes skills-line-move {
+  0%   { top: 10%; opacity: 0.7;}
+  40%  { opacity: 1;}
+  80%  { opacity: 0.7;}
+  100% { top: 80%; opacity: 0;}
+}
+
+/* Make sure the skills section is positioned relative so the animation stays inside */
+.skills {
   position: relative;
-  border: 2px solid transparent;
-}
-
-.project-card i {
-  font-size: 2.2em;
-  color: #00e0ff;
-  margin-bottom: 12px;
-  display: block;
-  animation: tech-glow 2s infinite alternate;
-}
-
-@keyframes tech-glow {
-  0% { text-shadow: 0 0 8px #00e0ff55; }
-  100% { text-shadow: 0 0 24px #00e0ffcc; }
-}
-
-.project-card:hover {
-  transform: translateY(-8px) scale(1.04) rotate(-2deg);
-  box-shadow: 0 6px 32px #00e0ff55;
-  border: 2px solid #00e0ff;
-  background: linear-gradient(135deg, #22335b 70%, #00e0ff44 100%);
-}
-
-.project-card h3 {
-  margin: 12px 0 8px 0;
-  color: #00e0ff;
-  font-size: 1.2em;
-}
-
-.project-card p {
-  font-size: 1em;
-  color: #dbeafe;
-}
-
-/* Custom scrollbar for horizontal scroll */
-.projects-scroll::-webkit-scrollbar {
-  height: 10px;
-}
-.projects-scroll::-webkit-scrollbar-thumb {
-  background: #00e0ff;
-  border-radius: 6px;
-}
-.projects-scroll::-webkit-scrollbar-track {
-  background: #22335b;
-  border-radius: 6px;
-}
-
-/* Responsive: stack cards vertically on small screens */
-@media (max-width: 700px) {
-  .projects-scroll {
-    flex-direction: column;
-    gap: 18px;
-    overflow-x: hidden;
-    overflow-y: visible;
-    padding: 0 8px 0 8px;
-  }
-  .project-card {
-    min-width: 0;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-}
-
-/* Responsive, creative scroll animation */
-.scroll-animation {
-  position: fixed;
-  left: 50%;
-  bottom: 32px;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 1000;
-  pointer-events: none;
-}
-
-.scroll-dot {
-  width: 12px;
-  height: 12px;
-  background: #00e0ff;
-  border-radius: 50%;
-  margin-bottom: 6px;
-  animation: scrollDotBounce 1.2s infinite;
-}
-
-.scroll-arrow {
-  display: block;
-  width: 18px;
-  height: 18px;
-  border-left: 3px solid #00e0ff;
-  border-bottom: 3px solid #00e0ff;
-  transform: rotate(-45deg);
-  animation: scrollArrowMove 1.2s infinite;
-}
-
-@keyframes scrollDotBounce {
-  0%, 100% { transform: translateY(0);}
-  50% { transform: translateY(10px);}
-}
-
-@keyframes scrollArrowMove {
-  0%, 100% { transform: translateY(0);}
-  50% { transform: translateY(8px);}
-}
-
-/* Responsive: hide scroll animation on very small screens */
-@media (max-width: 500px) {
-  .scroll-animation {
-    display: none;
-  }
-}
-
-/* Cursor dot effect */
-.cursor-dot {
-  position: fixed;
-  width: 8px;
-  height: 8px;
-  background: #00e0ff;
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: transform 0.2s;
-  z-index: 9999;
-}
-
-/* Cursor dot enlargement on click */
-body:active .cursor-dot {
-  transform: translate(-50%, -50%) scale(1.5);
+  overflow: hidden;
+  z-index: 1;
 }
