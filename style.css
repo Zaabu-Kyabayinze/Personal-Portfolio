@@ -476,125 +476,75 @@ body:active .cursor-dot {
   transform: translate(-50%, -50%) scale(1.5);
 }
 
-/* --- BEGINNER-FRIENDLY: Animated tech-like background with moving lines and dots --- */
+/* === BEGINNER-FRIENDLY: Smooth, creative section transitions with a tech theme === */
 
-/* Animated gradient overlay for a techy effect */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: -2;
-  background: linear-gradient(120deg, #101827 0%, #22335b 100%);
-  opacity: 0.95;
-  pointer-events: none;
-}
-
-/* Container for tech background elements */
-.tech-bg-anim {
-  position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  pointer-events: none;
-  z-index: -1;
-}
-
-/* Moving glowing dots */
-.tech-dot {
-  position: absolute;
-  border-radius: 50%;
-  background: #00e0ff88;
-  opacity: 0.5;
-  animation: tech-dot-move 10s linear infinite alternate;
-}
-
-.tech-dot.dot1 { width: 28px; height: 28px; top: 12%; left: 18%; animation-delay: 0s;}
-.tech-dot.dot2 { width: 16px; height: 16px; top: 65%; left: 82%; animation-delay: 2s;}
-.tech-dot.dot3 { width: 22px; height: 22px; top: 78%; left: 28%; animation-delay: 4s;}
-.tech-dot.dot4 { width: 14px; height: 14px; top: 38%; left: 62%; animation-delay: 1s;}
-.tech-dot.dot5 { width: 20px; height: 20px; top: 22%; left: 72%; animation-delay: 3s;}
-
-@keyframes tech-dot-move {
-  0%   { transform: translateY(0) scale(1);}
-  50%  { transform: translateY(40px) scale(1.2);}
-  100% { transform: translateY(-30px) scale(0.9);}
-}
-
-/* Moving glowing lines */
-.tech-line {
-  position: absolute;
-  width: 2px;
-  height: 120px;
-  background: linear-gradient(180deg, #00e0ff88 0%, #00e0ff00 100%);
-  opacity: 0.7;
-  border-radius: 2px;
-  animation: tech-line-move 8s linear infinite;
-}
-
-.tech-line.line1 { left: 10vw; top: 0; animation-delay: 0s;}
-.tech-line.line2 { left: 30vw; top: 20vh; animation-delay: 2s;}
-.tech-line.line3 { left: 60vw; top: 10vh; animation-delay: 4s;}
-.tech-line.line4 { left: 80vw; top: 30vh; animation-delay: 1s;}
-.tech-line.line5 { left: 50vw; top: 60vh; animation-delay: 3s;}
-
-@keyframes tech-line-move {
-  0%   { top: 0; opacity: 0.7;}
-  40%  { opacity: 1;}
-  80%  { opacity: 0.7;}
-  100% { top: 90vh; opacity: 0;}
-}
-
-/* --- END TECH BACKGROUND --- */
-
-/* Tech-like animation for the skills section */
-.skills-bg-anim {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0; top: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.skills-dot {
-  position: absolute;
-  border-radius: 50%;
-  background: #00e0ff88;
-  opacity: 0.5;
-  animation: skills-dot-move 8s linear infinite alternate;
-}
-
-.skills-dot.sdot1 { width: 18px; height: 18px; top: 18%; left: 10%; animation-delay: 0s;}
-.skills-dot.sdot2 { width: 12px; height: 12px; top: 70%; left: 85%; animation-delay: 1.5s;}
-.skills-dot.sdot3 { width: 15px; height: 15px; top: 60%; left: 25%; animation-delay: 3s;}
-
-@keyframes skills-dot-move {
-  0%   { transform: translateY(0) scale(1);}
-  50%  { transform: translateY(25px) scale(1.2);}
-  100% { transform: translateY(-20px) scale(0.9);}
-}
-
-.skills-line {
-  position: absolute;
-  width: 2px;
-  height: 70px;
-  background: linear-gradient(180deg, #00e0ff88 0%, #00e0ff00 100%);
-  opacity: 0.7;
-  border-radius: 2px;
-  animation: skills-line-move 7s linear infinite;
-}
-
-.skills-line.sline1 { left: 20vw; top: 10%; animation-delay: 0s;}
-.skills-line.sline2 { left: 80vw; top: 60%; animation-delay: 2s;}
-
-@keyframes skills-line-move {
-  0%   { top: 10%; opacity: 0.7;}
-  40%  { opacity: 1;}
-  80%  { opacity: 0.7;}
-  100% { top: 80%; opacity: 0;}
-}
-
-/* Make sure the skills section is positioned relative so the animation stays inside */
-.skills {
-  position: relative;
-  overflow: hidden;
+/* All sections start slightly faded and moved down */
+section {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition:
+    opacity 0.9s cubic-bezier(.77,0,.18,1),
+    transform 0.9s cubic-bezier(.77,0,.18,1),
+    box-shadow 0.4s;
+  box-shadow: 0 2px 12px rgba(0,224,255,0.05);
+  will-change: opacity, transform;
+  position: relative; /* For tech border effect */
   z-index: 1;
 }
+
+/* When section is visible, fade in and pop up */
+section.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* On hover, add a glowing border for a techy effect */
+section:hover {
+  box-shadow: 0 4px 32px #00e0ff33, 0 2px 8px rgba(0,0,0,0.10);
+  transition: box-shadow 0.4s;
+}
+
+/* Techy animated border for each section (glow effect) */
+section::before {
+  content: "";
+  position: absolute;
+  left: 10px; right: 10px; top: 10px; bottom: 10px;
+  border-radius: 18px;
+  pointer-events: none;
+  z-index: -1;
+  border: 2px solid transparent;
+  background: linear-gradient(120deg, #00e0ff44 0%, #22335b00 100%);
+  opacity: 0.5;
+  filter: blur(2px);
+  transition: opacity 0.6s;
+  animation: tech-border-glow 2.5s infinite alternate;
+}
+@keyframes tech-border-glow {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.7; }
+}
+
+/* Subtle animated line under section headings */
+section h2, .projects-heading {
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+}
+section h2::after, .projects-heading::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  margin: 12px auto 0 auto;
+  background: linear-gradient(90deg, #00e0ff 0%, #22335b 100%);
+  border-radius: 2px;
+  animation: heading-glow 2s infinite alternate;
+}
+@keyframes heading-glow {
+  0% { box-shadow: 0 0 0 #00e0ff44; }
+  100% { box-shadow: 0 0 16px #00e0ff88; }
+}
+
+/* --- END SECTION TRANSITIONS --- */
+
+/* Add this script before the closing </body> tag in your index.html file, not in your CSS file. */
