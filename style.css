@@ -547,4 +547,51 @@ section h2::after, .projects-heading::after {
 
 /* --- END SECTION TRANSITIONS --- */
 
-/* Add this script before the closing </body> tag in your index.html file, not in your CSS file. */
+/* Tech-like Download CV button styles */
+.cv-btn {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 12px 32px;
+  background: linear-gradient(90deg, #00e0ff 0%, #22335b 100%);
+  color: #fff;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 2px 16px #00e0ff44;
+  letter-spacing: 1px;
+  transition:
+    background 0.3s,
+    color 0.3s,
+    box-shadow 0.3s,
+    transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Button hover effect: glowing and slight movement */
+.cv-btn:hover {
+  background: linear-gradient(90deg, #22335b 0%, #00e0ff 100%);
+  color: #fff;
+  box-shadow: 0 4px 32px #00e0ff88, 0 2px 8px #22335b88;
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* Animated techy border effect for the button */
+.cv-btn::after {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  border-radius: 8px;
+  border: 2px solid #00e0ff;
+  opacity: 0.3;
+  pointer-events: none;
+  animation: cv-btn-glow 1.8s infinite alternate;
+}
+
+@keyframes cv-btn-glow {
+  0% { box-shadow: 0 0 0 #00e0ff44; opacity: 0.3; }
+  100% { box-shadow: 0 0 16px #00e0ff88; opacity: 0.7; }
+}
