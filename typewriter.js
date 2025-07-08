@@ -83,3 +83,80 @@ document.addEventListener("DOMContentLoaded", function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 });
+
+// Section fade-in and slide-up using Intersection Observer
+document.addEventListener("DOMContentLoaded", function () {
+  const sections = document.querySelectorAll("section");
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+  sections.forEach(section => observer.observe(section));
+});
+
+window.addEventListener("load", function () {
+  setTimeout(() => {
+    document.getElementById("page-loader").classList.add("hide");
+  }, 1400); // increased delay for longer loader (was 400)
+});
+
+document.querySelectorAll('a[href^="#"], a.internal-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    // Only fade if not opening in new tab
+    if (!link.target && link.getAttribute('href').charAt(0) === "#") {
+      e.preventDefault();
+      const target = link.getAttribute('href');
+      gsap.to("body", { opacity: 0, duration: 0.4, onComplete: () => {
+        window.location.hash = target;
+        gsap.to("body", { opacity: 1, duration: 0.4 });
+      }});
+    }
+  });
+});
+
+// Add this at the end of your loader JS to animate the dots in the loader text
+document.addEventListener("DOMContentLoaded", function () {
+  const dots = document.querySelector('.loader-text .dots');
+  if (dots) {
+    let count = 0;
+    setInterval(() => {
+      count = (count + 1) % 4;
+      dots.textContent = '.'.repeat(count) || '.';
+    }, 400);
+  }
+});
+
+// Loader typewriter for welcome message and loader control
+window.addEventListener("load", function () {
+  const welcomeText = "Welcome to my Portfolio!";
+  const el = document.getElementById("loader-typewriter");
+  let idx = 0;
+
+  function typeWelcome() {
+    if (el) {
+      el.textContent = welcomeText.substring(0, idx);
+      idx++;
+      if (idx <= welcomeText.length) {
+        setTimeout(typeWelcome, 35); // Typing speed
+      } else {
+        // After typewriter finishes, fade out loader and fade in body
+        setTimeout(() => {
+          document.getElementById("page-loader").classList.add("hide");
+          setTimeout(() => {
+            document.body.style.opacity = "1";
+          }, 500);
+        }, 3000); // <-- Increased pause after typing to 3 seconds
+      }
+    }
+  }
+
+  // Call the function to start the typewriter effect
+  typeWelcome();
+});
