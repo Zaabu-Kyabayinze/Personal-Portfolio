@@ -146,13 +146,13 @@ window.addEventListener("load", function () {
       if (idx <= welcomeText.length) {
         setTimeout(typeWelcome, 35); // Typing speed
       } else {
-        // After typewriter finishes, fade out loader and fade in body
-        setTimeout(() => {
-          document.getElementById("page-loader").classList.add("hide");
-          setTimeout(() => {
-            document.body.style.opacity = "1";
-          }, 500);
-        }, 3000); // <-- Increased pause after typing to 3 seconds
+        // Loader will never hide, so do nothing here
+        // setTimeout(() => {
+        //   document.getElementById("page-loader").classList.add("hide");
+        //   setTimeout(() => {
+        //     document.body.style.opacity = "1";
+        //   }, 500);
+        // }, 3000);
       }
     }
   }
