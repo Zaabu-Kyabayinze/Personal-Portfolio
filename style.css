@@ -369,7 +369,8 @@ section:nth-of-type(4) { animation-delay: 0.6s; }
 /* Responsive Projects Carousel */
 @media (max-width: 900px) {
   .projects-horizontal .card {
-    max-width: 98vw !important;
+    max-width: 95vw !important;  /* Keep responsive for mobile */
+    font-size: 0.95em;
   }
   .project-img-fit {
     height: 160px;
@@ -850,5 +851,18 @@ section {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.7s cubic-bezier(.77,0,.18,1);
+}
+
+/* Slightly decrease the size of project cards in the carousel */
+.projects-horizontal .card {
+  max-width: 800px !important;   /* Was 1000px, now 800px */
+  font-size: 0.97em;             /* Slightly smaller text */
+}
+
+@media (max-width: 900px) {
+  .projects-horizontal .card {
+    max-width: 95vw !important;  /* Keep responsive for mobile */
+    font-size: 0.95em;
+  }
 }
 
