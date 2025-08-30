@@ -859,10 +859,168 @@ section {
   font-size: 0.97em;             /* Slightly smaller text */
 }
 
+/* New Projects Grid Styles */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin: 32px auto;
+  max-width: 1200px;
+  padding: 0 16px;
+  justify-content: center;      /* Center grid items horizontally */
+  align-items: center;          /* Center grid items vertically */
+}
+
+.project-card {
+  background: rgba(34, 51, 91, 0.52); /* Slightly less transparent tech blue */
+  border-radius: 22px;
+  box-shadow: 0 4px 32px #00e0ff22, 0 2px 8px rgba(0,0,0,0.10);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition:
+    box-shadow 0.4s cubic-bezier(.77,0,.18,1),
+    transform 0.4s cubic-bezier(.77,0,.18,1),
+    background 0.5s cubic-bezier(.77,0,.18,1);
+  position: relative;
+}
+
+/* Center align the projects grid and cards */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin: 32px auto;
+  max-width: 1200px;
+  padding: 0 16px;
+  justify-content: center;      /* Center grid items horizontally */
+  align-items: center;          /* Center grid items vertically */
+}
+
+/* Center content inside each card */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;          /* Center card content horizontally */
+  justify-content: center;      /* Center card content vertically */
+  height: 100%;
+}
+
+/* Center text inside card body */
+.project-card-body {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  pointer-events: none;
+  background: radial-gradient(circle at 60% 40%, #00e0ff33 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s;
+  z-index: 0;
+}
+
+.project-card:hover {
+  box-shadow: 0 12px 48px #00e0ff66, 0 2px 8px rgba(0,0,0,0.18);
+  transform: scale(1.05) translateY(-8px) rotate(1deg);
+  background: rgba(0, 224, 255, 0.18);
+}
+
+.project-card:hover::before {
+  opacity: 1;
+  animation: cardGlowPulse 1.2s alternate infinite;
+}
+
+@keyframes cardGlowPulse {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.project-img-fit {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 22px 22px 0 0;
+  box-shadow: 0 2px 16px #00e0ff22;
+  transition: filter 0.4s, transform 0.4s;
+  z-index: 1;
+}
+.project-card:hover .project-img-fit {
+  filter: brightness(1.08) saturate(1.2) drop-shadow(0 0 12px #00e0ff88);
+  transform: scale(1.04) rotate(-2deg);
+}
+
+.project-card-body {
+  padding: 24px 18px;
+  background: transparent;
+  color: #fff;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2;
+  position: relative;
+  transition: background 0.4s;
+}
+
+.project-card-body h3 {
+  color: #00e0ff;
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.3em;
+  letter-spacing: 1px;
+  text-shadow: 0 0 12px #00e0ff88;
+  transition: color 0.3s;
+}
+
+.project-card:hover .project-card-body h3 {
+  color: #dbeafe;
+  text-shadow: 0 0 24px #00e0ffcc;
+}
+
+.project-card-body p {
+  color: #dbeafe;
+  font-size: 1em;
+  margin-bottom: 18px;
+  transition: color 0.3s;
+}
+
+.project-card-body .btn {
+  align-self: flex-start;
+  font-size: 1em !important;
+  padding: 10px 24px !important;
+  border-radius: 8px !important;
+  background: linear-gradient(90deg, #00e0ff 0%, #22335b 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 2px 12px #00e0ff44;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
+  position: relative;
+  z-index: 2;
+}
+
+.project-card-body .btn:hover {
+  background: linear-gradient(90deg, #22335b 0%, #00e0ff 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 24px #00e0ff88;
+  transform: translateY(-2px) scale(1.08);
+}
+
+/* Responsive adjustments */
 @media (max-width: 900px) {
-  .projects-horizontal .card {
-    max-width: 95vw !important;  /* Keep responsive for mobile */
-    font-size: 0.95em;
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .project-img-fit {
+    height: 140px;
+  }
+  .project-card-body {
+    padding: 14px 8px;
   }
 }
 
